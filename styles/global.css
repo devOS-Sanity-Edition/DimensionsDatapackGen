@@ -1,0 +1,461 @@
+:root {
+  --background: #ffffff;
+  --text: #000000;
+  --nav: #343a40;
+  --nav-hover: #565d64;
+  --nav-faded: #9fa2a7;
+  --nav-faded-hover: #bcbfc3;
+  --selection: rgba(103, 134, 221, 0.6);
+  --border: #cccccc;
+  --nav-menu: #ffffff83;
+  --btn-background: #1f2020a6;
+  --btn-hover: #5d5f5fa6;
+  --btn-text: #ffffff;
+  --btn-active: #a5e77a;
+  --errors-background: #f13000c5;
+  --errors-text: #000000cc;
+  
+  --style-transition: 0.3s;
+}
+
+:root[data-theme=dark] {
+  --background: #222222;
+  --text: #ffffff;
+  --nav: #91908f;
+  --nav-hover: #b4b3b0;
+  --nav-faded: #4d4c4c;
+  --nav-faded-hover: #6e6e6e;
+  --border: #3d3d3d;
+  --nav-menu: #00000083;
+  --btn-background: #0a0a0aa6;
+  --btn-hover: #383838a6;
+  --errors-text: #ffffffcc;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-size: 18px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.container {
+  overflow-x: hidden;
+  background-color: var(--background);
+  transition: background-color var(--style-transition);
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  height: 56px;
+  border-bottom: 2px solid var(--border);
+  transition: border-color var(--style-transition);
+}
+
+.header-title {
+  display: flex;
+  align-items: center;
+}
+
+.header-title h2 {
+  margin-right: 10px;
+  color: var(--nav);
+  transition: color var(--style-transition);
+}
+
+.home-link.nav-item {
+  margin: 0 8px 0 0;
+}
+
+.home-link svg {
+  padding: 2px;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+}
+
+.nav-item {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  margin: 0 16px;
+  user-select: none;
+  fill: var(--nav);
+  transition: fill var(--style-transition);
+}
+
+.nav-item:hover {
+  fill: var(--nav-hover);
+}
+
+.nav-item span {
+  font-size: 1.1em;
+}
+
+.nav-item#source-toggle {
+  display: none;
+}
+
+.nav-item#github-link {
+  fill: var(--nav-faded);
+}
+
+.nav-item#github-link:hover {
+  fill: var(--nav-faded-hover);
+}
+
+.toggle:not(.toggled) svg:nth-child(1) {
+  display: none;
+}
+
+.toggle.toggled svg:nth-child(2) {
+  display: none;
+}
+
+.nav-selector {
+  position: relative;
+}
+
+.nav-selector-menu {
+  display: flex;
+  flex-direction: column;
+  visibility: hidden;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  margin-top: 10px;
+  z-index: 10;
+  border-radius: 3px;
+  background-color: var(--nav-menu);
+}
+
+.nav-selector-menu .btn {
+  white-space: nowrap;
+}
+
+.content {
+  display: flex;
+  height: calc(100vh - 56px);
+  overflow-y: hidden;
+}
+
+.tree {
+  position: relative;
+}
+
+.tree-content {
+  overflow-y: auto;
+  height: 100%;
+  padding: 1rem;
+  padding-bottom: 50vh;
+}
+
+.source {
+  position: relative;
+}
+
+.source-content {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.source textarea {
+  width: 100%;
+  height: 100%;
+  padding: 1.3rem 0.4rem;
+  border: none;
+  white-space: pre;
+  overflow-wrap: normal;
+  overflow-x: auto;
+  tab-size: 4;
+  -moz-tab-size: 4;
+  -o-tab-size: 4;
+  -webkit-tab-size: 4;
+  outline: none;
+  resize: none;
+  background-color: var(--background);
+  color: var(--text);
+  transition: background-color var(--style-transition), color var(--style-transition)
+}
+
+.source textarea::selection {
+  background-color: var(--selection);
+}
+
+.tree-controls,
+.source-controls,
+.visualizer-controls {
+  display: flex;
+  flex-direction: row-reverse;
+  position: absolute;
+  right: 17px;
+  top: 0;
+  padding: 5px;
+}
+
+.tree-controls .btn:not(:first-child),
+.source-controls .btn:not(:first-child),
+.visualizer-controls .btn:not(:first-child) {
+  margin-right: 5px;
+}
+
+.tree-controls-menu,
+.source-controls-menu {
+  display: flex;
+  visibility: hidden;
+  flex-direction: column;
+  position: absolute;
+  right: 17px;
+  top: 37px;
+  padding: 5px;
+}
+
+.source-controls input {
+  margin-right: 5px;
+  background: var(--background);
+  color: var(--text);
+  font-size: 17px;
+  border: none;
+  transition: background-color var(--style-transition), color var(--style-transition);
+}
+
+.source-controls input::selection {
+  background-color: var(--selection);
+}
+
+.gutter {
+  border-color: var(--border) !important;
+  transition: border-color var(--style-transition);
+}
+
+.gutter.gutter-vertical {
+  border-top: 2px solid;
+  border-bottom: 2px solid;
+  cursor: ns-resize;  
+}
+
+.gutter.gutter-horizontal {
+  border-left: 2px solid;
+  border-right: 2px solid;
+  cursor: ew-resize;
+}
+
+.visualizer-content {
+  width: 100%;
+  max-width: 100%;
+  position: relative;
+}
+
+.visualizer-controls {
+  right: 0;
+}
+
+.visualizer-content canvas {
+  width: 100%;
+  height: 100%;
+  background-color: var(--nav-faded);
+  display: block;
+  cursor: grab;
+  image-rendering: optimizeSpeed;
+  image-rendering: -moz-crisp-edges;
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: -o-crisp-edges;
+  image-rendering: pixelated;
+  -ms-interpolation-mode: nearest-neighbor;
+}
+
+.btn {
+  display: flex;
+  align-items: center;
+  border: none;
+  border-radius: 3px;
+  padding: 7px 11px;
+  cursor: pointer;
+  outline: none;
+  font-size: 1rem;
+  background-color: var(--btn-background);
+  color: var(--btn-text);
+  fill: var(--btn-text);
+  transition: background-color var(--style-transition);
+}
+
+.btn:hover {
+  background-color: var(--btn-hover);
+}
+
+.btn svg:not(:last-child) {
+  margin-right: 5px;
+}
+
+.btn-group .btn:not(:last-child) {
+  border-bottom-right-radius: 0px;
+  border-bottom-left-radius: 0px;
+}
+
+.btn-group .btn:not(:first-child) {
+  border-top-right-radius: 0px;
+  border-top-left-radius: 0px;
+}
+
+.btn.check,
+.btn.selected {
+  fill: var(--btn-active);
+  color: var(--btn-active);
+}
+
+.errors {
+  position: fixed;
+  bottom: 17px;
+  right: 17px;
+  margin: 5px;
+  border-radius: 3px;
+  background-color: var(--errors-background);
+  color: var(--errors-text);
+  fill: var(--errors-text);
+  transition: fill var(--style-transition);
+}
+
+.errors:not(.active) .error-list {
+  display: none;
+}
+
+.error {
+  display: flex;
+  align-items: center;
+  padding: 7px;
+}
+
+.error span {
+  padding-left: 11px;
+}
+
+.errors .toggle {
+  padding: 6px;
+  width: 36px;
+  height: 36px;
+  align-self: flex-end;
+  cursor: pointer;
+  user-select: none;
+}
+
+.errors.active .toggle {
+  padding: 2px;
+}
+
+.home {
+  display: flex;
+  padding: 20px;
+}
+
+.generators-list {
+  display: flex;
+  flex-direction: column;
+  margin: 0 20px;
+}
+
+.generators-card {
+  margin: 5px 0;
+  padding: 8px 15px;
+  cursor: pointer;
+  user-select: none;
+  border-radius: 3px;
+  background-color: var(--nav-faded);
+  color: var(--text);
+  fill: var(--text);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: background-color 0.2s;
+  transition: margin 0.2s;
+}
+
+.generators-card:hover,
+.generators-card.selected {
+  background-color: var(--nav-faded-hover);
+  margin-left: 8px;
+  margin-right: -8px;
+}
+
+.generators-card svg {
+  margin-left: 10px;
+}
+
+@media screen and (max-width: 580px) {
+  body {
+    overflow-y: hidden;
+  }
+
+  .header {
+    flex-direction: column;
+    height: 92px;
+  }
+
+  .nav {
+    align-self: flex-end;
+  }
+
+  .content,
+  .source textarea {
+    height: calc(100vh - 92px);
+  }
+
+  .source,
+  .gutter.gutter-horizontal {
+    display: none;
+  }
+
+  .tree {
+    width: 100% !important;
+    height: 100%;
+  }
+
+  .nav-item#source-toggle {
+    display: flex;
+    position: absolute;
+    left: 10px;
+  }
+
+  .source.active {
+    display: initial;
+    position: absolute;
+    width: 100% !important;
+    height: 100%;
+  }
+
+  .source.active .source-controls {
+    right: 17px;
+    top: 0px;
+  }
+
+  .source.active .source-controls-menu {
+    right: 17px;
+    top: 37px;
+  }
+
+  .nav-selector-menu {
+    right: 0;
+    left: initial;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .header-title h2 {
+    font-size: 18px;
+  }
+}
+
+@media screen and (min-width: 581px) and (max-width: 640px) {
+  .header-title h2 {
+    font-size: 22px;
+  }
+}
