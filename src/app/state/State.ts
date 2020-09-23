@@ -1,5 +1,7 @@
+import { DataModel, NumberNode, ObjectNode } from "@mcschema/core";
 import { View } from "../views/View";
 import { LocalStorageProperty } from './LocalStorageProperty';
+import config from '../../config.json'
 
 type UrlParams = {[name: string]: string}
 
@@ -8,6 +10,15 @@ export class State {
     document.documentElement.setAttribute('data-theme', value)
   })
   language = new LocalStorageProperty('language', 'en')
+
+  models: { [key: string]: DataModel } = {}
+  constructor() {
+    config.models.forEach(m => {
+      this.models[m.schema] = new DataModel(ObjectNode({
+        foo: NumberNode()
+      }))
+    })
+  }
 
   params: UrlParams = {}
   setParams(params: UrlParams) {
