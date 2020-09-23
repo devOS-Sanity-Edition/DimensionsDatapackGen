@@ -402,6 +402,7 @@ nav li svg {
   cursor: pointer;
   user-select: none;
   text-decoration: none;
+  text-transform: capitalize;
   border-radius: 3px;
   background-color: var(--nav-faded);
   color: var(--text);
@@ -411,6 +412,10 @@ nav li svg {
   justify-content: space-between;
   transition: background-color 0.2s;
   transition: margin 0.2s;
+}
+
+.generators-card * {
+  pointer-events: none;
 }
 
 .generators-card:hover,

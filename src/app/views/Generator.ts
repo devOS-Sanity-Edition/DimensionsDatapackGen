@@ -3,16 +3,18 @@ import { Header } from '../components/Header'
 import { Panel } from '../components/Panel'
 import { SplitGroup } from '../components/SplitGroup'
 import { View } from './View'
+import config from '../../config.json'
 
 export class Generator extends View {
-  private schema: string
+  private schema?: typeof config.models[0]
   constructor() {
     super()
-    this.schema = STATE.params.schema
+    const url = STATE.params.schema.replace(/\/$/, '')
+    this.schema = config.models.find(m => m.id === url)
   }
   render(): string {
     return `
-      ${Header(this, this.schema)}
+      ${Header(this, this.schema?.name + ' Generator' ?? '')}
       <div class="content">
         ${SplitGroup(this, { direction: "horizontal", sizes: [66, 34] }, [
           Panel(this, 'note', '<h2>1</h2>'),

@@ -51,6 +51,7 @@ const router = async () => {
   }
 
   STATE.setParams(getParams(match))
+  STATE.setSearchParams(new URLSearchParams(location.search))
   STATE.setView(new match.view())
   STATE.invalidate()
 }

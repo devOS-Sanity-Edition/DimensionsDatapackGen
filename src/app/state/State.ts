@@ -7,13 +7,16 @@ export class State {
   theme = new LocalStorageProperty('theme', 'light', (_, value) => {
     document.documentElement.setAttribute('data-theme', value)
   })
-  language = new LocalStorageProperty('language', 'en', (_, value) => {
-    document.documentElement.setAttribute('lang', value)
-  })
+  language = new LocalStorageProperty('language', 'en')
 
   params: UrlParams = {}
   setParams(params: UrlParams) {
     this.params = params
+  }
+
+  searchParams: URLSearchParams = new URLSearchParams(location.search)
+  setSearchParams(searchParams: URLSearchParams) {
+    this.searchParams = searchParams
   }
 
   private view?: View
