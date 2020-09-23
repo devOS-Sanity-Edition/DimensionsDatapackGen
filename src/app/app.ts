@@ -50,6 +50,7 @@ const router = async () => {
     }
   }
 
+  STATE.setParams(getParams(match))
   STATE.setView(new match.view())
   STATE.invalidate()
 }

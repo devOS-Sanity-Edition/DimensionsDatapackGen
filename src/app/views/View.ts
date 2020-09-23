@@ -9,8 +9,6 @@ export function hexId(length = 12) {
 export class View {
   private registry: { [id: string]: (el: Element) => void } = {}
 
-  constructor() {}
-
   render(): string {
     return ''
   }
