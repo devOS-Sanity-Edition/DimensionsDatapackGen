@@ -38,18 +38,19 @@
   padding: 0;
 }
 
+a svg {
+  pointer-events: none;
+}
+
 body {
   font-size: 18px;
   font-family: Arial, Helvetica, sans-serif;
-}
-
-.container {
   overflow-x: hidden;
   background-color: var(--background);
   transition: background-color var(--style-transition);
 }
 
-.header {
+header {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -70,20 +71,34 @@ body {
   transition: color var(--style-transition);
 }
 
-.home-link.nav-item {
+.home-link {
   margin: 0 8px 0 0;
+  fill: var(--nav);
+  transition: fill var(--style-transition);
+}
+
+.home-link svg {
+  width: 32px;
+  height: 32px;
 }
 
 .home-link svg {
   padding: 2px;
 }
 
-.nav {
+nav ul {
+  list-style-type: none;
   display: flex;
   align-items: center;
 }
 
-.nav-item {
+nav li > *,
+nav li svg {
+  width: 24px;
+  height: 24px;
+}
+
+nav li {
   display: flex;
   align-items: center;
   cursor: pointer;
@@ -93,32 +108,16 @@ body {
   transition: fill var(--style-transition);
 }
 
-.nav-item:hover {
+nav li:hover {
   fill: var(--nav-hover);
 }
 
-.nav-item span {
-  font-size: 1.1em;
-}
-
-.nav-item#source-toggle {
-  display: none;
-}
-
-.nav-item#github-link {
+nav li.dimmed {
   fill: var(--nav-faded);
 }
 
-.nav-item#github-link:hover {
+nav li.dimmed:hover {
   fill: var(--nav-faded-hover);
-}
-
-.toggle:not(.toggled) svg:nth-child(1) {
-  display: none;
-}
-
-.toggle.toggled svg:nth-child(2) {
-  display: none;
 }
 
 .nav-selector {
@@ -361,6 +360,7 @@ body {
   display: flex;
   flex-direction: column;
   margin: 0 20px;
+  list-style-type: none;
 }
 
 .generators-card {
@@ -368,6 +368,7 @@ body {
   padding: 8px 15px;
   cursor: pointer;
   user-select: none;
+  text-decoration: none;
   border-radius: 3px;
   background-color: var(--nav-faded);
   color: var(--text);
@@ -417,12 +418,6 @@ body {
   .tree {
     width: 100% !important;
     height: 100%;
-  }
-
-  .nav-item#source-toggle {
-    display: flex;
-    position: absolute;
-    left: 10px;
   }
 
   .source.active {
