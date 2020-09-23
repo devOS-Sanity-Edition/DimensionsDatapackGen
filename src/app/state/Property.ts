@@ -1,4 +1,4 @@
-import { STATE } from "../app"
+import { STATE } from '../app'
 
 export type PropertyListener<T> = (oldValue: T | null, newValue: T) => void
 

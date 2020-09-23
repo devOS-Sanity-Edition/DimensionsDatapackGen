@@ -1,7 +1,7 @@
 import { Header } from '../components/Header'
 import { View } from './View'
-import config from '../../config.json'
 import { Octicon } from '../components/Octicon'
+import config from '../../config.json'
 
 export class Home extends View {
   render(): string {

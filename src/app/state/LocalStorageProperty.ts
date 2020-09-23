@@ -1,4 +1,4 @@
-import { Property, PropertyListener } from "./Property"
+import { Property, PropertyListener } from './Property'
 
 export class LocalStorageProperty extends Property<string> {
   constructor(private id: string, fallback: string, listener?: PropertyListener<string>) {

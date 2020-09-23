@@ -1,5 +1,5 @@
 import { View } from "../views/View";
-import { LocalStorageProperty } from "./LocalStorageProperty";
+import { LocalStorageProperty } from './LocalStorageProperty';
 
 export class State {
   theme = new LocalStorageProperty('theme', 'light', (_, value) => {

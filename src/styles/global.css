@@ -92,53 +92,64 @@ nav ul {
   align-items: center;
 }
 
-nav li > *,
-nav li svg {
-  width: 24px;
-  height: 24px;
-}
-
 nav li {
   display: flex;
   align-items: center;
   cursor: pointer;
   margin: 0 16px;
   user-select: none;
+}
+
+nav li svg {
   fill: var(--nav);
   transition: fill var(--style-transition);
 }
 
-nav li:hover {
+nav li:hover svg {
   fill: var(--nav-hover);
 }
 
-nav li.dimmed {
+nav li.dimmed svg {
   fill: var(--nav-faded);
 }
 
-nav li.dimmed:hover {
+nav li.dimmed:hover svg {
   fill: var(--nav-faded-hover);
 }
 
-.nav-selector {
+nav li > *,
+nav li svg {
+  width: 24px;
+  height: 24px;
+}
+
+.dropdown {
   position: relative;
 }
 
-.nav-selector-menu {
-  display: flex;
-  flex-direction: column;
-  visibility: hidden;
+.dropdown > * {
   position: absolute;
-  top: 100%;
-  left: 0;
-  margin-top: 10px;
-  z-index: 10;
-  border-radius: 3px;
-  background-color: var(--nav-menu);
+  width: 24px;
+  height: 24px;
 }
 
-.nav-selector-menu .btn {
-  white-space: nowrap;
+.dropdown > *:not(select) {
+  pointer-events: none;
+}
+
+.dropdown select {
+  cursor: pointer;
+  border: none;
+  background: none;
+  color: transparent;
+  outline: none;
+}
+
+.dropdown option {
+  color: var(--text);
+  background-color: var(--background);
+  font-size: 130%;
+  border: none;
 }
 
 .content {

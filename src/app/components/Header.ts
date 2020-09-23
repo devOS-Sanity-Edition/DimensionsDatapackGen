@@ -1,7 +1,9 @@
-import { STATE } from "../app";
-import { View } from "../views/View";
-import { Octicon } from "./Octicon";
-import { Toggle } from "./Toggle";
+import { STATE } from '../app';
+import { View } from '../views/View';
+import { Dropdown } from './Dropdown';
+import { Octicon } from './Octicon';
+import { Toggle } from './Toggle';
+import { languages } from '../../config.json'
 
 export const Header = (view: View, title: string) => `
   <header>
@@ -11,7 +13,7 @@ export const Header = (view: View, title: string) => `
     </div>
     <nav>
       <ul>
-        <li>${Octicon['globe']}</li>
+        <li>${Dropdown(view, 'globe', languages.map(l => [l.code, l.name]), STATE.language)}</li>
         <li>${Toggle(view, [['dark', 'sun'], ['light', 'moon']], STATE.theme)}</li>
         <li class="dimmed">
           <a href="https://github.com/misode/misode.github.io" target="_blank">
