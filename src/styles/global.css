@@ -160,29 +160,25 @@ nav li svg {
   fill: var(--text);
 }
 
-.panel-group {
+.split-group {
   display: flex;
   width: 100%;
   height: 100%;
 }
 
-.panel-group.vertical {
+.split-group.vertical {
   flex-direction: column;
 }
 
 .panel {
   position: relative;
-}
-
-.panel-content {
-  height: 100%;
-  overflow-y: auto;
-  padding: 14px;
+  overflow: auto;
 }
 
 .tree {
   padding-bottom: 50vh;
   padding: 14px;
+  /* overflow: auto; */
 }
 
 .source  {
@@ -330,6 +326,7 @@ nav li svg {
 }
 
 .errors {
+  display: flex;
   position: fixed;
   bottom: 17px;
   right: 17px;
@@ -339,10 +336,6 @@ nav li svg {
   color: var(--errors-text);
   fill: var(--errors-text);
   transition: fill var(--style-transition);
-}
-
-.errors:not(.active) .error-list {
-  display: none;
 }
 
 .error {
@@ -364,8 +357,9 @@ nav li svg {
   user-select: none;
 }
 
-.errors.active .toggle {
-  padding: 2px;
+.errors .toggle svg {
+  width: 24px;
+  height: 24px;
 }
 
 .home {
@@ -411,6 +405,44 @@ nav li svg {
 
 .generators-card svg {
   margin-left: 10px;
+}
+
+.spinner {
+  margin: auto;
+  display: inline-block;
+  width: 80px;
+  height: 80px;
+}
+
+.spinner:after {
+  content: "";
+  display: block;
+  width: 64px;
+  height: 64px;
+  margin: 8px;
+  border-radius: 50%;
+  border: 6px solid var(--border);
+  border-color: var(--border) transparent var(--border) transparent;
+  animation: spinner 1.2s linear infinite, fadein 0.4s;
+  transition: border-color var(--style-transition);
+}
+
+@keyframes spinner {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes fadein {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 @media screen and (max-width: 580px) {

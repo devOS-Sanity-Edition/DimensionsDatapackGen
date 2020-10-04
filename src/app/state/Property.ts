@@ -1,16 +1,19 @@
 import { STATE } from '../app'
 
-export type PropertyListener<T> = (oldValue: T | null, newValue: T) => void
+export type PropertOptions<T> = {
+  watcher?: (value: T, oldValue: T | null) => void
+  silent?: boolean
+}
 
 export class Property<T> {
-  constructor(protected value: T, protected listener?: PropertyListener<T>) {
-    if (this.listener) this.listener(null, value)
+  constructor(public value: T, private options: PropertOptions<T> = {}) {
+    if (options.watcher) options.watcher(value, null)
   }
   set(value: T) {
     if (this.value === value) return
-    if (this.listener) this.listener(this.value, value)
+    if (this.options.watcher) this.options.watcher(value, this.value)
     this.value = value
-    STATE.invalidate()
+    if (!this.options.silent) STATE.invalidate()
   }
   get(): T {
     return this.value

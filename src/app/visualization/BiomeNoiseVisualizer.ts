@@ -1,7 +1,6 @@
 import { DataModel, Path, ModelPath } from "@mcschema/core"
 import { NormalNoise } from './NormalNoise'
 import { Visualizer } from './Visualizer'
-import { VisualizerView } from './VisualizerView'
 
 const LOCAL_STORAGE_BIOME_COLORS = 'biome_colors'
 
@@ -61,18 +60,6 @@ export class BiomeNoiseVisualizer extends Visualizer {
   onDrag(fromX: number, fromY: number, toX: number, toY: number) {
     this.offsetX += toX - fromX
     this.offsetY += toY - fromY
-  }
-
-  addControls(el: HTMLElement, view: VisualizerView) {
-    el.insertAdjacentHTML('beforeend', `<button class="btn" id="visualizer-controls-toggle"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16"><path fill-rule="evenodd" d="M8 2a.75.75 0 01.75.75v4.5h4.5a.75.75 0 010 1.5h-4.5v4.5a.75.75 0 01-1.5 0v-4.5h-4.5a.75.75 0 010-1.5h4.5v-4.5A.75.75 0 018 2z"></path></svg></button><button class="btn" id="visualizer-controls-toggle"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16"><path fill-rule="evenodd" d="M2 8a.75.75 0 01.75-.75h10.5a.75.75 0 010 1.5H2.75A.75.75 0 012 8z"></path></svg></button>`)
-    el.childNodes[0].addEventListener('click', () => {
-      this.viewScale -= 0.5
-      view.redraw()
-    })
-    el.childNodes[1].addEventListener('click', () => {
-      this.viewScale += 0.5
-      view.redraw()
-    })
   }
 
   private closestBiome(x: number, y: number): string {

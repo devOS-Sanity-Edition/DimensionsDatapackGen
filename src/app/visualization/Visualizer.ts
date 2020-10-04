@@ -1,5 +1,4 @@
 import { DataModel, ModelPath } from "@mcschema/core"
-import { VisualizerView } from "./VisualizerView"
 
 export abstract class Visualizer {
   state: any
@@ -13,6 +12,4 @@ export abstract class Visualizer {
   abstract draw(model: DataModel, img: ImageData): void
 
   onDrag(fromX: number, fromY: number, toX: number, toY: number): void {}
-
-  addControls(el: HTMLElement, view: VisualizerView): void {}
 }

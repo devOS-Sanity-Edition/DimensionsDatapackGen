@@ -38,32 +38,6 @@
   --category-function-border: #6b6b6b;
 }
 
-.tree > .object-node > .node-body {
-  border-left: none;
-  padding-left: 0;
-}
-
-.tree > .node > .node-body {
-  margin-top: -5px; /* no idea why this is necessary */
-}
-
-.node {
-  margin: 2px 0;
-}
-
-.node-body > .node:first-child {
-  margin-top: 4px;
-}
-
-.node:last-child {
-  margin-bottom: 0;
-}
-
-.node-body {
-  border-left: 3px solid var(--node-indent-border);
-  transition: border-color var(--style-transition);
-}
-
 /* Node headers */
 
 .node-header {
@@ -125,17 +99,17 @@
 
 .node-header > *:last-child,
 .node-header > input[list]:nth-last-child(2),
-.node-header[data-help] > *:nth-last-child(2),
-.node-header[data-help] > input[list]:nth-last-child(3),
-.node-header[data-error] > *:nth-last-child(2),
-.node-header[data-error] > input[list]:nth-last-child(3),
-.node-header[data-help][data-error] > *:nth-last-child(3),
-.node-header[data-help][data-error] > input[list]:nth-last-child(4) {
+.node[data-help] > .node-header > *:nth-last-child(2),
+.node[data-help] > .node-header > input[list]:nth-last-child(3),
+.node[data-error] > .node-header > *:nth-last-child(2),
+.node[data-error] > .node-header > input[list]:nth-last-child(3),
+.node[data-help][data-error] > .node-header > *:nth-last-child(3),
+.node[data-help][data-error] > .node-header > input[list]:nth-last-child(4) {
   border-top-right-radius: 3px;
   border-bottom-right-radius: 3px;
 }
 
-.node-header > *:not(:last-child) {
+.node-header > * {
   margin-right: -1px;
 }
 
@@ -241,20 +215,37 @@ button.remove {
   transition: fill var(--style-transition);
 }
 
-.node-header svg.node-help {
+.node-icon.node-help svg {
   fill: var(--node-border);
 }
 
-.node-header svg.node-error {
+.node-icon.node-error svg {
   fill: var(--node-remove);
 }
 
 /* Node body and list entry */
 
+.node {
+  margin-bottom: 4px;
+}
+
+.node-body > .node:first-child {
+  margin-top: 4px;
+}
+
+.node:last-child {
+  margin-bottom: 0;
+}
+
+.node-body {
+  border-left: 3px solid var(--node-indent-border);
+  transition: border-color var(--style-transition);
+}
+
 .node-body {
   display: flex;
   flex-direction: column;
-  padding-left: 14px;
+  padding-left: 22px;
 }
 
 .node-entry > .object-node > .node-body {
@@ -265,7 +256,6 @@ button.remove {
   border-left: none;
 }
 
-.node-entry > .object-node > .node-body > .node.node-header > *:first-child,
 .node-entry > .object-node > .node-body > .node > .node-header > *:first-child {
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
@@ -275,7 +265,7 @@ button.remove {
 .node-entry {
   display: flex;
   flex-direction: column;
-  margin-top: 2px;
+  margin-top: 4px;
 }
 
 /* Node type specifics */
@@ -292,27 +282,23 @@ button.remove {
 /* Color categories */
 
 [data-category=predicate] > .node-header > label,
-[data-category=predicate] > .node-body > .node.node-header > label,
 [data-category=predicate] > .node-body > .node > .node-header > label {
   background-color: var(--category-predicate) !important;
 }
 
 [data-category=predicate] > .node-body,
 [data-category=predicate] > .node-header > label,
-[data-category=predicate] > .node-body > .node.node-header > *:not(.selected),
 [data-category=predicate] > .node-body > .node > .node-header > *:not(.selected) {
   border-color: var(--category-predicate-border) !important;
 }
 
 [data-category=function] > .node-header > label,
-[data-category=function] > .node-body > .node.node-header > label,
 [data-category=function] > .node-body > .node > .node-header > label {
   background-color: var(--category-function) !important;
 }
 
 [data-category=function] > .node-body,
 [data-category=function] > .node-header > label,
-[data-category=function] > .node-body > .node.node-header > *:not(.selected),
 [data-category=function] > .node-body > .node > .node-header > *:not(.selected) {
   border-color: var(--category-function-border) !important;
 }
