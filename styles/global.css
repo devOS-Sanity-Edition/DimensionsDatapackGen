@@ -298,8 +298,10 @@ nav > .toggle span {
   align-items: center;
   border: none;
   border-radius: 3px;
+  height: 33px;
   padding: 7px 11px;
   cursor: pointer;
+  user-select: none;
   outline: none;
   font-size: 1rem;
   white-space: nowrap;
@@ -309,7 +311,7 @@ nav > .toggle span {
   transition: background-color var(--style-transition);
 }
 
-.btn:hover {
+.btn:not(.input):hover {
   background-color: var(--btn-hover);
 }
 
@@ -331,6 +333,15 @@ nav > .toggle span {
 .btn.selected {
   fill: var(--btn-active);
   color: var(--btn-active);
+}
+
+.btn.input {
+  cursor: initial;
+}
+
+.btn input {
+  margin-left: 5px;
+  width: 100px;
 }
 
 .errors {
