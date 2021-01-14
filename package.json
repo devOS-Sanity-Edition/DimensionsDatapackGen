@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "description": "",
-  "main": "index.js",
+  "main": "./dist/main.js",
   "scripts": {
     "build": "webpack-cli -p",
     "start": "webpack-dev-server -d --content-base ./public --host 0.0.0.0"
@@ -31,5 +31,8 @@
     "webpack": "^4.44.2",
     "webpack-cli": "^3.3.11",
     "webpack-dev-server": "^3.11.0"
+  },
+  "devDependencies": {
+    "electron": "^11.2.0"
   }
 }

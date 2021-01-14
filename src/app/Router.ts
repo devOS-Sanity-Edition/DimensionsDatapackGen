@@ -7,10 +7,14 @@ import { locale } from './Locales';
 import { Tracker } from './Tracker';
 import config from '../config.json'
 
+declare global {
+  interface Window { app: any; }
+}
+
 const categories = config.models.filter(m => m.category === true)
 
 const router = async () => {
-  const urlParts = location.pathname.split('/').filter(e => e)  
+  const urlParts = location.hash.replace('#', '').split('/').filter(e => e)
   const urlParams = new URLSearchParams(location.search)
 
   const target = document.getElementById('app')!
@@ -45,7 +49,8 @@ const router = async () => {
   document.title = locale('title.suffix', [title])
   App.mobilePanel.set(panel)
   const view = new View()
-  view.mount(target, renderer(view), true)
+  view.mount(target, renderer(view), true);
+  window.app = App.model;
 }
 
 window.addEventListener("popstate", router);
@@ -59,9 +64,15 @@ document.addEventListener("DOMContentLoaded", () => {
       e.preventDefault();
       const target = e.target.getAttribute('href')!
       Tracker.pageview(target)
-      history.pushState(null, '', target);
+
+      const url = new URL(window.location.toString());
+      url.hash = target;
+      history.pushState(null, '', url.toString());
       router();
     }
   });
+
+  window.location.hash = '/';
+
   router();
 });

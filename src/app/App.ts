@@ -9,7 +9,7 @@ import { fetchData } from './DataFetcher';
 import { BiomeNoisePreview } from './preview/BiomeNoisePreview';
 import { NoiseSettingsPreview } from './preview/NoiseSettingsPreview';
 import { DecoratorPreview } from './preview/DecoratorPreview';
-import config from '../config.json';
+import config from '../config';
 import { locale, Locales } from './Locales';
 import { Tracker } from './Tracker';
 import { Settings } from './Settings';
@@ -83,11 +83,8 @@ App.version.watchRun(async (value) => {
 App.theme.watchRun((value) => document.documentElement.setAttribute('data-theme', value))
 
 
-let hasFetchedEnglish = false
 
 App.language.watchRun(async (value) => {
-  App.localesLoaded.set(false)
-  await updateLocale(value)
   App.localesLoaded.set(true)
 })
 
@@ -129,13 +126,6 @@ async function updateSchemas(version: string) {
         }
       }
     })
-}
-
-async function updateLocale(language: string) {
-  if (Locales[language] && (hasFetchedEnglish || language !== 'en')) return
-  const data = await (await fetch(`/locales/${language}.json`)).json()
-  if (language === 'en') hasFetchedEnglish = true
-  Locales[language] = data
 }
 
 export function checkVersion(versionId: string, minVersionId: string | undefined, maxVersionId?: string) {
