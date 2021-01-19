@@ -1,0 +1,78 @@
+div.titleBar {
+    display: none;
+}
+
+body:not(.electron) .onlyElectron {
+    display: none;
+}
+
+.clearfix {
+    overflow: auto;
+}
+
+body.electron div.titleBar {
+    height: 40px;
+    display: flex;
+    z-index: 9000;
+    -webkit-app-region: drag;
+    width: 100%;
+}
+body.electron div.titleBar div.title {
+    color: #000000;
+    display: flex;
+    flex-grow: 1;
+    align-items: center;
+}
+body.electron div.titleBar div.title p {
+    margin: 0 16px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+body.electron div.titleBar div.buttons {
+    min-width: 144px;
+    display: flex;
+    justify-content: flex-end;
+}
+body.electron div.titleBar div.buttons button {
+    background: transparent;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    -webkit-app-region: no-drag;
+}
+body.electron div.titleBar div.buttons .btn svg {
+    width: 16px;
+    height: 16px;
+    fill: var(--g4-app-foreground);
+}
+body.electron div.titleBar div.buttons .btn:active {
+    background: var(--g4-app-foreground);
+}
+body.electron div.titleBar div.buttons .btn:active svg {
+    fill: var(--g4-app-background);
+}
+body.electron main div.game header {
+    top: 40px;
+}
+body.electron main div.game canvas {
+    top: calc(50% + 40px);
+}
+body.electron aside, body.electron dialog {
+    height: calc(100% - 40px);
+    padding-top: 40px;
+}
+
+body:not(.maximized) button#restoreBtn {
+    display: none;
+}
+
+body.maximized button#maximizeBtn {
+    display: none;
+}
+
+@media (max-width: 768px) {
+    body.electron aside:not(.expanded) button.expander {
+        top: 40px;
+    }
+}

@@ -1,8 +1,6 @@
 const {ipcRenderer} = require("electron")
 const {shell} = require("electron").remote
 
-document.body.classList.add("electron")
-
 document.querySelector("button#minimizeBtn").addEventListener("click", () => {
     ipcRenderer.send("minimize")
 })
