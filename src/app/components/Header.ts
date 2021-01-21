@@ -37,7 +37,7 @@ export const Header = (view: View, title: string, homeLink = '/') => {
             <h2>${title}</h2>
         </div>
         <div class="buttons">
-            <div class="titlebtn">${Toggle(view, [['dark', 'sun'], ['light', 'moon']], App.theme, Tracker.setTheme)}</div>
+            ${Toggle(view, [['dark', 'sun'], ['light', 'moon']], App.theme, Tracker.setTheme, 'titlebtn')}
             <a class="titlebtn" href="/settings/fields/" title="${locale('settings')}">
                 ${Octicon.gear}
             </a>
@@ -45,26 +45,10 @@ export const Header = (view: View, title: string, homeLink = '/') => {
                 ${Octicon.mark_github}
             </button>
             
-            <button class="titlebtn" id="minimizeBtn">
-                <svg x="0px" y="0px" viewBox="0 0 16 16">
-                    <rect x="2" y="8" width="12" height="1"/>
-                </svg>
-            </button>
-            <button class="titlebtn" id="maximizeBtn">
-                <svg x="0px" y="0px" viewBox="0 0 16 16">
-                    <path d="M13,3v10H3V3H13 M14,2h-1H3H2v1v10v1h1h10h1v-1V3V2L14,2z"/>
-                </svg>
-            </button>
-            <button class="titlebtn" id="restoreBtn">
-                <svg x="0px" y="0px" viewBox="0 0 16 16">
-                    <path d="M5,2v3H2v9h9v-3h3V2H5z M10,13H3V6h7V13z M13,10h-2V5H6V3h7V10z"/>
-                </svg>
-            </button>
-            <button class="titlebtn" id="closeBtn">
-                <svg x="0px" y="0px" viewBox="0 0 16 16">
-                    <polygon points="8.7,8 14.3,13.6 13.7,14.3 8,8.7 2.3,14.3 1.7,13.6 7.3,8 1.7,2.3 2.3,1.6 8,7.3 13.7,1.6 14.3,2.3 "/>
-                </svg>
-            </button>
+            <button class="titlebtn" id="minimizeBtn">${Octicon.minimize}</button>
+            <button class="titlebtn" id="maximizeBtn">${Octicon.square}</button>
+            <button class="titlebtn" id="restoreBtn">${Octicon.restore}</button>
+            <button class="titlebtn" id="closeBtn">${Octicon.x}</button>
         </div>
     </div>
   </header>`

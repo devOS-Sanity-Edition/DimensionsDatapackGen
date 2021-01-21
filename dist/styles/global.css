@@ -44,7 +44,7 @@ a svg {
 
 body {
   font-size: 18px;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Poppins', sans-serif;
   overflow-x: hidden;
   background-color: var(--background);
   transition: background-color var(--style-transition);
@@ -79,8 +79,7 @@ body[data-panel="settings"] header {
 }
 
 .home-link {
-  margin: 0 8px 0 0;
-  height: 32px;
+  margin-right: 8px;
   fill: var(--nav);
   transition: fill var(--style-transition);
 }
@@ -88,7 +87,6 @@ body[data-panel="settings"] header {
 .home-link svg {
   width: 32px;
   height: 32px;
-  padding: 2px;
 }
 
 .panel-toggles {
@@ -107,13 +105,6 @@ nav li {
   cursor: pointer;
   margin: 0 16px;
   user-select: none;
-}
-
-.panel-toggles > *:hover svg,
-.home-link:hover svg,
-header .toggle:hover svg,
-nav li:hover svg {
-  fill: var(--nav-hover);
 }
 
 nav > .toggle {

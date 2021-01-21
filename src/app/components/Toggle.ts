@@ -2,7 +2,7 @@ import { Property } from '../state/Property';
 import { View } from '../views/View';
 import { Octicon } from './Octicon';
 
-export const Toggle = <T>(view: View, entries: [T, keyof typeof Octicon][], state: Property<T>, watcher?: (value: T) => void) => {
+export const Toggle = <T>(view: View, entries: [T, keyof typeof Octicon][], state: Property<T>, watcher?: (value: T) => void, toggleClass: string = 'toggle') => {
   const activeOcticon = () => Octicon[(entries.find(e => e[0] === state.get()) ?? entries[0])[1]]
   const toggle = view.register(el => {
     el.addEventListener('click', () => {
@@ -11,5 +11,5 @@ export const Toggle = <T>(view: View, entries: [T, keyof typeof Octicon][], stat
     })
     state.watch(_ => el.innerHTML = activeOcticon(), 'toggle')
   })
-  return `<div class="toggle" data-id="${toggle}">${activeOcticon()}</div>`
+  return `<button class="${toggleClass}" data-id="${toggle}">${activeOcticon()}</button>`
 }
