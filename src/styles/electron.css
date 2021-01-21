@@ -34,30 +34,31 @@ body.electron div.titleBar div.buttons {
     display: flex;
     justify-content: flex-end;
 }
-body.electron div.titleBar div.buttons button {
+.titlebtn {
+    border: none;
+    padding: .75rem 1rem;
     background: transparent;
-    display: flex;
+    display: inline-block;
     justify-content: center;
     align-items: center;
     -webkit-app-region: no-drag;
 }
-body.electron div.titleBar div.buttons .btn svg {
+
+.titlebtn svg {
     width: 16px;
     height: 16px;
-    fill: var(--g4-app-foreground);
+    fill: var(--nav);
 }
-body.electron div.titleBar div.buttons .btn:active {
-    background: var(--g4-app-foreground);
+
+.titlebtn:active {
+    outline: none;
+    border: none;
 }
-body.electron div.titleBar div.buttons .btn:active svg {
-    fill: var(--g4-app-background);
+
+.titlebtn:hover {
+    cursor: pointer;
 }
-body.electron main div.game header {
-    top: 40px;
-}
-body.electron main div.game canvas {
-    top: calc(50% + 40px);
-}
+
 body.electron aside, body.electron dialog {
     height: calc(100% - 40px);
     padding-top: 40px;

@@ -4,14 +4,56 @@ import { Home } from './views/Home'
 import { FieldSettings } from './views/FieldSettings'
 import { Generator } from './views/Generator'
 import { locale } from './Locales';
-import { Tracker } from './Tracker';
 import config from '../config.json'
 
 declare global {
-  interface Window { app: any; }
+  interface Window {
+    app: any;
+    openLink: (url: string) => void;
+  }
 }
 
 const categories = config.models.filter(m => m.category === true)
+
+function electron() {
+  const {ipcRenderer} = require("electron")
+  const {shell} = require("electron").remote
+
+  document.getElementById("minimizeBtn")!!.addEventListener("click", () => {
+    ipcRenderer.send("minimize")
+  })
+
+  document.getElementById("maximizeBtn")!!.addEventListener("click", () => {
+    ipcRenderer.send("maximize")
+  })
+
+  document.getElementById("restoreBtn")!!.addEventListener("click", () => {
+    ipcRenderer.send("unmaximize")
+  })
+
+  document.getElementById("closeBtn")!!.addEventListener("click", () => {
+    ipcRenderer.send("close")
+  })
+
+  ipcRenderer.on("maximized", () => {
+    document.body.classList.add("maximized")
+  })
+
+  ipcRenderer.on("unmaximized", () => {
+    document.body.classList.remove("maximized")
+  })
+
+  document.querySelectorAll("a:not(.titlebtn)").forEach(link => {
+    if (link instanceof HTMLAnchorElement) link.addEventListener("click", (e) => {
+      shell.openExternal(link.href)
+      e.preventDefault()
+    });
+  })
+
+  window.openLink = (url) => {
+    shell.openExternal(url)
+  }
+}
 
 const router = async () => {
   const urlParts = location.hash.replace('#', '').split('/').filter(e => e)
@@ -51,28 +93,28 @@ const router = async () => {
   const view = new View()
   view.mount(target, renderer(view), true);
   window.app = App.model;
+
+  electron();
 }
 
 window.addEventListener("popstate", router);
 
-document.addEventListener("DOMContentLoaded", () => {
-  document.body.addEventListener("click", e => {
+document.addEventListener("DOMContentLoaded", async () => {
+  document.body.addEventListener("click", async e => {
     if (e.target instanceof Element
-      && e.target.hasAttribute('data-link')
       && e.target.hasAttribute('href')
     ) {
       e.preventDefault();
       const target = e.target.getAttribute('href')!
-      Tracker.pageview(target)
 
       const url = new URL(window.location.toString());
       url.hash = target;
       history.pushState(null, '', url.toString());
-      router();
+      await router();
     }
   });
 
   window.location.hash = '/';
 
-  router();
+  await router();
 });
