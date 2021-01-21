@@ -63,9 +63,9 @@ app.commandLine.appendSwitch("autoplay-policy", "no-user-gesture-required");
 
 app.on("ready", () => {
     createWindow();
-    devtools = new BrowserWindow()
-    win.webContents.setDevToolsWebContents(devtools.webContents)
-    win.webContents.openDevTools({ mode: 'detach' })
+    //devtools = new BrowserWindow()
+    //win.webContents.setDevToolsWebContents(devtools.webContents)
+    //win.webContents.openDevTools({ mode: 'detach' })
 
 })
 
