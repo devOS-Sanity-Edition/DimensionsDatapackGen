@@ -16,11 +16,11 @@ function createWindow () {
         fullscreen: false,
 
         frame: false,
-        //icon: __dirname + '/res/icons/icon.ico',
+        icon: __dirname + '/favicon-32.ico',
 
         webPreferences: {
             nodeIntegration: true,
-            enableRemoteModule:true
+            enableRemoteModule: true
         }
     });
 
