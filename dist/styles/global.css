@@ -84,9 +84,9 @@ body[data-panel="settings"] header {
   transition: fill var(--style-transition);
 }
 
-.home-link svg {
-  width: 32px;
-  height: 32px;
+svg {
+  width: 16px;
+  height: 16px;
 }
 
 .panel-toggles {
