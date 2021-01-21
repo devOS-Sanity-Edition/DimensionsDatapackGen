@@ -122,7 +122,7 @@ export const TreePanel = (view: View, model: DataModel) => {
       </div>
       <div class="panel-menu">
         <div class="btn" data-id="${view.onClick(toggleMenu)}">
-          ${Octicon.kebab_horizontal}
+          ${Octicon.three_dots}
         </div>
         <div class="panel-menu-list btn-group">
           <div class="btn" data-id="${view.onClick(() => {

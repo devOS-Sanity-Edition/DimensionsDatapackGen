@@ -45,7 +45,7 @@ export const Header = (view: View, title: string, homeLink = '/') => {
                 ${Octicon.mark_github}
             </button>
             
-            <button class="titlebtn" id="minimizeBtn">${Octicon.minimize}</button>
+            <button class="titlebtn" id="minimizeBtn">${Octicon.dash}</button>
             <button class="titlebtn" id="maximizeBtn">${Octicon.square}</button>
             <button class="titlebtn" id="restoreBtn">${Octicon.restore}</button>
             <button class="titlebtn" id="closeBtn">${Octicon.x}</button>

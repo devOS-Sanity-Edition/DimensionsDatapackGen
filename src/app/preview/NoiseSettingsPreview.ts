@@ -28,7 +28,7 @@ export class NoiseSettingsPreview extends Preview {
   menu(view: View, redraw: () => void) {
     return `<div class="panel-menu">
       <div class="btn" data-id="${view.onClick(toggleMenu)}">
-        ${Octicon.kebab_horizontal}
+        ${Octicon.three_dots}
       </div>
       <div class="panel-menu-list btn-group">
         <div class="btn input">
